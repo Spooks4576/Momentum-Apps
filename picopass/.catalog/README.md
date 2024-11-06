@@ -1,9 +1,8 @@
 # Picopass
 
-
 This application allows you to read, write, save, and emulate legacy HID iClass cards and fobs (based on the picopass chipset).  Also supports saving the credential to the Flipper Zero LFRFID data format, changing the keys on the card, performing dictionary attack, and performing the 'online' part of the loclass attack.
 
-# Loclass
+# Loclass (HID Only)
 
 The loclass attack emulates specific CSN and collects responses from the reader which can be used to calculate the elite or (some) custom key configured for that reader.  This key is then used to read data on the cards used with that reader.
 
@@ -34,7 +33,7 @@ There are some situations when the offline loclass may not find a key, such as:
 
 # NR-MAC Attack
 
-Due to the nature of how secure mode picopass works, it is possible to emulate some public fields from a card and capture the reader's response, which can be used to authenticate.  Two of the pieces involved in this are the `NR` and `MAC`.  This allows you to get a dump of the card, except for the key, even if you don't know the key.  For picopass in non-HID systems this can allow you to see what the data looks like.  For iClass SE the data (SIO) is encrypted, but a friend with a HID SAM can decrypt it.
+Due to the nature of how secure mode picopass works, it is possible to emulate some public fields from a card and capture the reader's response, which can be used to authenticate.  Two of the pieces involved in this are the 'NR' and 'MAC'.  This allows you to get a dump of the card, except for the key, even if you don't know the key.  For picopass in non-HID systems this can allow you to see what the data looks like.  For iClass SE the data (SIO) is encrypted, but a friend with a HID SAM can decrypt it.
 
 *These instructions are intended to be performed all at the same time.  If you use the card with the reader between Card Part 1 and Card Part 2, then Card Part 2 will fail.*
 

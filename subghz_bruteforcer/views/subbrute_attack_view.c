@@ -1,6 +1,5 @@
 #include "subbrute_attack_view.h"
 #include "../subbrute_i.h"
-#include "../helpers/gui_top_buttons.h"
 
 #include <input/input.h>
 #include <gui/elements.h>
@@ -19,7 +18,6 @@ struct SubBruteAttackView {
     uint64_t max_value;
     uint64_t current_step;
     bool is_attacking;
-    // uint8_t extra_repeats;
 };
 
 typedef struct {
@@ -163,7 +161,7 @@ SubBruteAttackView* subbrute_attack_view_alloc() {
 
 void subbrute_attack_view_enter(void* context) {
     furi_assert(context);
-    SubBruteAttackView* instance = context;
+    SubBruteAttackView* instance = (SubBruteAttackView*)context;
     with_view_model(
         instance->view,
         SubBruteAttackViewModel * model,
@@ -204,8 +202,8 @@ void subbrute_attack_view_set_current_step(SubBruteAttackView* instance, uint64_
         true);
 }
 
-// We need to call init every time, because not every time we calls enter
-// normally, call enter only once
+// We need to call init every time, because not every time we call "enter"
+// normally, so call "enter" only once
 void subbrute_attack_view_init_values(
     SubBruteAttackView* instance,
     uint8_t index,
@@ -313,8 +311,8 @@ void subbrute_attack_view_draw(Canvas* canvas, void* context) {
         elements_button_left(canvas, "-1");
         elements_button_right(canvas, "+1");
         elements_button_center(canvas, "Start");
-        elements_button_top_left(canvas, "Save");
-        elements_button_top_right(canvas, "Resend");
+        elements_button_up(canvas, "Save");
+        elements_button_down(canvas, "Resend");
     } else {
         // canvas_draw_icon_animation
         const uint8_t icon_h_offset = 0;

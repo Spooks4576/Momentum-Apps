@@ -3,7 +3,7 @@
 [![Build](https://github.com/xtruan/FlipBIP/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/xtruan/FlipBIP/actions/workflows/build.yml)
 
 ## Crypto toolkit for Flipper Zero
-- Last built against `0.104.0` Flipper Zero firmware release
+- Last built against `1.0.1` Flipper Zero firmware release
 - Using Trezor crypto libs from `core/v2.5.3` release
 - NOTE: This app uses very close to the maximum Flipper Zero RAM. If you get `furi_check failed` on launch, try running again!
 
@@ -15,7 +15,10 @@
 
 The goal of this project is to see how much crypto functionality can be brought to the Flipper Zero.
 
-## How to install on Flipper Zero
+## How to install on Flipper Zero (from app store)
+- Install from here: https://lab.flipper.net/apps/flipbip
+
+## How to install on Flipper Zero (from source)
 - If you do not have one, download a Flipper Zero firmware to get the `fbt` build tool
 - Plug your Flipper Zero in via USB
 - Copy the contents of this folder into the `applications_user` folder of your firmware

@@ -1,0 +1,32 @@
+name: "Lint"
+
+on:
+  push:
+  pull_request:
+
+env:
+  SET_GH_OUTPUT: 1
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout firmware"
+        uses: actions/checkout@v4
+        with:
+          repository: Next-Flip/Momentum-Firmware
+          fetch-depth: 1
+          ref: dev
+          submodules: recursive
+
+      - name: "Checkout apps"
+        uses: actions/checkout@v4
+        with:
+          path: applications/external
+          fetch-depth: 1
+          ref: ${{ github.event.pull_request.head.sha }}
+
+      - name: "Check formatting"
+        run: |
+          git add applications/external
+          ./fbt lint_all

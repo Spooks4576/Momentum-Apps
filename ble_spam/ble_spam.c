@@ -357,7 +357,7 @@ static void draw_callback(Canvas* canvas, void* _ctx) {
             AlignTop,
             "\e#Delay\e# is time between\n"
             "attack attempts (top right),\n"
-            "keep 30ms for best results",
+            "keep 20ms for best results",
             false);
         break;
     case PageHelpDistance:
@@ -670,7 +670,7 @@ int32_t ble_spam(void* p) {
     state->ctx.notification = furi_record_open(RECORD_NOTIFICATION);
     Gui* gui = furi_record_open(RECORD_GUI);
     state->ctx.view_dispatcher = view_dispatcher_alloc();
-    view_dispatcher_enable_queue(state->ctx.view_dispatcher);
+
     view_dispatcher_set_event_callback_context(state->ctx.view_dispatcher, state);
     view_dispatcher_set_custom_event_callback(state->ctx.view_dispatcher, custom_event_callback);
     view_dispatcher_set_tick_event_callback(state->ctx.view_dispatcher, tick_event_callback, 100);

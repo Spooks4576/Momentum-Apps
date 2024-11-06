@@ -2,10 +2,9 @@
 
 // Marauder firmware source - https://github.com/justcallmekoko/ESP32Marauder
 // Wardriver firmware source - https://github.com/Sil333033/flipperzero-wardriver
-// AirTag Scanner firmware source - https://github.com/MatthewKuKanich/ESP32-AirTag-Scanner
-// Black Magic firmware source - https://github.com/flipperdevices/blackmagic-esp32-s2
+// BlackMagic firmware source - https://github.com/flipperdevices/blackmagic-esp32-s2
 
-// DO NOT use as an example, you should split into different scene files for each screen
+// DO NOT use this code as an example, you should split into different scene files for each screen
 // To keep in a single file, this is setup in an unusual and confusing way
 // You can find more info in comments throughout
 
@@ -16,33 +15,27 @@ enum QuickState {
     QuickStart,
     QuickS2Boot,
     QuickS2Boot_Marauder,
-    QuickS2Boot_Wardriver,
     QuickS2Boot_Blackmagic,
     QuickS2Boot_GhostESP,
     QuickWROOMBoot,
     QuickWROOMBoot_Marauder,
     QuickWROOMBoot_Wardriver,
-    QuickWROOMBoot_Airtag,
     QuickWROOMBoot_GhostESP,
     QuickS3Boot,
     QuickS3Boot_Marauder,
     QuickS3Boot_Wardriver,
-    QuickS3Boot_Airtag,
     QuickS3Boot_GhostESP,
     QuickWROOM,
     QuickWROOM_Marauder,
     QuickWROOM_Wardriver,
-    QuickWROOM_Airtag,
     QuickWROOM_GhostESP,
     QuickS2,
     QuickS2_Marauder,
-    QuickS2_Wardriver,
     QuickS2_Blackmagic,
     QuickS2_GhostESP,
     QuickS3,
     QuickS3_Marauder,
     QuickS3_Wardriver,
-    QuickS3_Airtag,
     QuickS3_GhostESP,
 };
 
@@ -70,21 +63,25 @@ void esp_flasher_scene_quick_on_enter(void* context) {
     case QuickWROOM:
     case QuickS2:
     case QuickS3:
-        submenu_set_header(submenu, "Choose Board:");
+        submenu_set_header(submenu, "Choose ESP32 Type:");
         submenu_add_item(
             submenu,
-            "WiFi Dev / RL S2 / Xeon",
+            "Flipper WiFi Devboard",
             QuickS2Boot,
             esp_flasher_scene_quick_submenu_callback,
             app);
         submenu_add_item(
             submenu,
-            "SCE Multi-Fucc",
+            "WROOM (auto bootloader)",
             QuickWROOMBoot,
             esp_flasher_scene_quick_submenu_callback,
             app);
         submenu_add_item(
-            submenu, "RL ESP32-S3", QuickS3Boot, esp_flasher_scene_quick_submenu_callback, app);
+            submenu,
+            "S3 (auto bootloader)",
+            QuickS3Boot,
+            esp_flasher_scene_quick_submenu_callback,
+            app);
         submenu_add_item(
             submenu,
             "Other ESP32-WROOM",
@@ -98,11 +95,9 @@ void esp_flasher_scene_quick_on_enter(void* context) {
         break;
 
     case QuickS2Boot_Marauder:
-    case QuickS2Boot_Wardriver:
     case QuickS2Boot_Blackmagic:
     case QuickS2Boot_GhostESP:
     case QuickS2_Marauder:
-    case QuickS2_Wardriver:
     case QuickS2_Blackmagic:
     case QuickS2_GhostESP:
         submenu_set_header(submenu, "Choose Firmware:");
@@ -110,12 +105,6 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             submenu,
             "Marauder (has Evil Portal)",
             state > QuickS2 ? QuickS2_Marauder : QuickS2Boot_Marauder,
-            esp_flasher_scene_quick_submenu_callback,
-            app);
-        submenu_add_item(
-            submenu,
-            "Wardriver",
-            state > QuickS2 ? QuickS2_Wardriver : QuickS2Boot_Wardriver,
             esp_flasher_scene_quick_submenu_callback,
             app);
         submenu_add_item(
@@ -134,11 +123,9 @@ void esp_flasher_scene_quick_on_enter(void* context) {
 
     case QuickWROOMBoot_Marauder:
     case QuickWROOMBoot_Wardriver:
-    case QuickWROOMBoot_Airtag:
     case QuickWROOMBoot_GhostESP:
     case QuickWROOM_Marauder:
     case QuickWROOM_Wardriver:
-    case QuickWROOM_Airtag:
     case QuickWROOM_GhostESP:
         submenu_set_header(submenu, "Choose Firmware:");
         submenu_add_item(
@@ -155,12 +142,6 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "AirTag Scanner",
-            state > QuickWROOM ? QuickWROOM_Airtag : QuickWROOMBoot_Airtag,
-            esp_flasher_scene_quick_submenu_callback,
-            app);
-        submenu_add_item(
-            submenu,
             "Ghost ESP",
             state > QuickWROOM ? QuickWROOM_GhostESP : QuickWROOMBoot_GhostESP,
             esp_flasher_scene_quick_submenu_callback,
@@ -169,11 +150,9 @@ void esp_flasher_scene_quick_on_enter(void* context) {
 
     case QuickS3Boot_Marauder:
     case QuickS3Boot_Wardriver:
-    case QuickS3Boot_Airtag:
     case QuickS3Boot_GhostESP:
     case QuickS3_Marauder:
     case QuickS3_Wardriver:
-    case QuickS3_Airtag:
     case QuickS3_GhostESP:
         submenu_set_header(submenu, "Choose Firmware:");
         submenu_add_item(
@@ -186,12 +165,6 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             submenu,
             "Wardriver",
             state > QuickS3 ? QuickS3_Wardriver : QuickS3Boot_Wardriver,
-            esp_flasher_scene_quick_submenu_callback,
-            app);
-        submenu_add_item(
-            submenu,
-            "AirTag Scanner",
-            state > QuickS3 ? QuickS3_Airtag : QuickS3Boot_Airtag,
             esp_flasher_scene_quick_submenu_callback,
             app);
         submenu_add_item(
@@ -249,13 +222,6 @@ bool esp_flasher_scene_quick_on_event(void* context, SceneManagerEvent event) {
             firm = APP_DATA_PATH("assets/marauder/s2/esp32_marauder.flipper.bin");
             break;
 
-        case QuickS2Boot_Wardriver:
-            enter_bootloader = true;
-            /* fallthrough */
-        case QuickS2_Wardriver:
-            boot = APP_DATA_PATH("assets/wardriver/f0-wardrive-s2.bin");
-            break;
-
         case QuickS2Boot_Blackmagic:
             enter_bootloader = true;
             /* fallthrough */
@@ -291,15 +257,6 @@ bool esp_flasher_scene_quick_on_event(void* context, SceneManagerEvent event) {
             boot = APP_DATA_PATH("assets/wardriver/f0-wardrive-wroom.bin");
             break;
 
-        case QuickWROOMBoot_Airtag:
-            enter_bootloader = true;
-            /* fallthrough */
-        case QuickWROOM_Airtag:
-            boot = APP_DATA_PATH("assets/airtag/wroom/airtag_scanner.ino.bootloader.bin");
-            part = APP_DATA_PATH("assets/airtag/airtag_scanner.ino.partitions.bin");
-            firm = APP_DATA_PATH("assets/airtag/wroom/airtag_scanner.ino.bin");
-            break;
-
         case QuickWROOMBoot_GhostESP:
             enter_bootloader = true;
             /* fallthrough */
@@ -326,16 +283,6 @@ bool esp_flasher_scene_quick_on_event(void* context, SceneManagerEvent event) {
         case QuickS3_Wardriver:
             s3 = true;
             boot = APP_DATA_PATH("assets/wardriver/f0-wardrive-s3.bin");
-            break;
-
-        case QuickS3Boot_Airtag:
-            enter_bootloader = true;
-            /* fallthrough */
-        case QuickS3_Airtag:
-            s3 = true;
-            boot = APP_DATA_PATH("assets/airtag/s3/airtag_scanner.ino.bootloader.bin");
-            part = APP_DATA_PATH("assets/airtag/airtag_scanner.ino.partitions.bin");
-            firm = APP_DATA_PATH("assets/airtag/s3/airtag_scanner.ino.bin");
             break;
 
         case QuickS3Boot_GhostESP:

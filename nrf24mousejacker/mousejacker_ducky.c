@@ -1,5 +1,7 @@
 #include "mousejacker_ducky.h"
 
+#include "stdstring.h"
+
 static const char ducky_cmd_comment[] = {"REM"};
 static const char ducky_cmd_delay[] = {"DELAY "};
 static const char ducky_cmd_string[] = {"STRING "};
@@ -443,7 +445,7 @@ void mj_process_ducky_script(
 
     inject_packet(
         handle, addr, addr_size, rate, LOGITECH_HELLO, LOGITECH_HELLO_SIZE, plugin_state);
-    char* line = strtok(script, "\n");
+    char* line = nrf_strtok(script, "\n");
     while(line != NULL) {
         if(strcmp(&line[strlen(line) - 1], "\r") == 0) line[strlen(line) - 1] = (char)0;
 
@@ -451,7 +453,7 @@ void mj_process_ducky_script(
             FURI_LOG_D(TAG, "unable to process ducky script line: %s", line);
 
         prev_line = line;
-        line = strtok(NULL, "\n");
+        line = nrf_strtok(NULL, "\n");
     }
     build_hid_packet(0, 0, hid_payload);
     inject_packet(
