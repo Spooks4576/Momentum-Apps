@@ -109,7 +109,7 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "Black Magic",
+            "Black Magic (FZ debugger)",
             state > QuickS2 ? QuickS2_Blackmagic : QuickS2Boot_Blackmagic,
             esp_flasher_scene_quick_submenu_callback,
             app);
@@ -136,7 +136,7 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "Wardriver",
+            "Wardriver (GPS -> Flipper)",
             state > QuickWROOM ? QuickWROOM_Wardriver : QuickWROOMBoot_Wardriver,
             esp_flasher_scene_quick_submenu_callback,
             app);
@@ -163,7 +163,7 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "Wardriver",
+            "Wardriver (GPS -> Flipper)",
             state > QuickS3 ? QuickS3_Wardriver : QuickS3Boot_Wardriver,
             esp_flasher_scene_quick_submenu_callback,
             app);
