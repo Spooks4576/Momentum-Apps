@@ -236,8 +236,8 @@ bool esp_flasher_scene_quick_on_event(void* context, SceneManagerEvent event) {
             /* fallthrough */
         case QuickS2_GhostESP:
             boot = APP_DATA_PATH("assets/ghostesp/s2/bootloader.bin");
-            part = APP_DATA_PATH("assets/ghostesp/s2/partitions.bin");
-            firm = APP_DATA_PATH("assets/ghostesp/s2/firmware.bin");
+            part = APP_DATA_PATH("assets/ghostesp/partition-table.bin");
+            firm = APP_DATA_PATH("assets/ghostesp/s2/Ghost_ESP_IDF.bin");
             break;
 
         case QuickWROOMBoot_Marauder:
@@ -262,8 +262,8 @@ bool esp_flasher_scene_quick_on_event(void* context, SceneManagerEvent event) {
             /* fallthrough */
         case QuickWROOM_GhostESP:
             boot = APP_DATA_PATH("assets/ghostesp/wroom/bootloader.bin");
-            part = APP_DATA_PATH("assets/ghostesp/wroom/partitions.bin");
-            firm = APP_DATA_PATH("assets/ghostesp/wroom/firmware.bin");
+            part = APP_DATA_PATH("assets/ghostesp/partition-table.bin");
+            firm = APP_DATA_PATH("assets/ghostesp/wroom/Ghost_ESP_IDF.bin");
             break;
 
         case QuickS3Boot_Marauder:
@@ -291,8 +291,8 @@ bool esp_flasher_scene_quick_on_event(void* context, SceneManagerEvent event) {
         case QuickS3_GhostESP:
             s3 = true;
             boot = APP_DATA_PATH("assets/ghostesp/s3/bootloader.bin");
-            part = APP_DATA_PATH("assets/ghostesp/s3/partitions.bin");
-            firm = APP_DATA_PATH("assets/ghostesp/s3/firmware.bin");
+            part = APP_DATA_PATH("assets/ghostesp/partition-table.bin");
+            firm = APP_DATA_PATH("assets/ghostesp/s3/Ghost_ESP_IDF.bin");
             break;
 
         default:
