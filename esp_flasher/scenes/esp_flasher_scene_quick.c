@@ -115,7 +115,7 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "Ghost ESP",
+            "Ghost ESP (beta)",
             state > QuickS2 ? QuickS2_GhostESP : QuickS2Boot_GhostESP,
             esp_flasher_scene_quick_submenu_callback,
             app);
@@ -142,7 +142,7 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "Ghost ESP",
+            "Ghost ESP (beta)",
             state > QuickWROOM ? QuickWROOM_GhostESP : QuickWROOMBoot_GhostESP,
             esp_flasher_scene_quick_submenu_callback,
             app);
@@ -169,7 +169,7 @@ void esp_flasher_scene_quick_on_enter(void* context) {
             app);
         submenu_add_item(
             submenu,
-            "Ghost ESP",
+            "Ghost ESP (beta)",
             state > QuickS3 ? QuickS3_GhostESP : QuickS3Boot_GhostESP,
             esp_flasher_scene_quick_submenu_callback,
             app);
